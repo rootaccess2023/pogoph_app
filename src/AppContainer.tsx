@@ -1,3 +1,9 @@
+import { MapBox } from "./layout";
+
 export function AppContainer() {
-  return <div>MAPBOX</div>;
+  return (
+    <div className="">
+      <MapBox />
+    </div>
+  );
 }
