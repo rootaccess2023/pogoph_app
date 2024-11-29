@@ -1,5 +1,11 @@
+import { AppContainer } from "./AppContainer";
+
 function App() {
-  return <>Initial set up</>;
+  return (
+    <>
+      <AppContainer />
+    </>
+  );
 }
 
 export default App;
