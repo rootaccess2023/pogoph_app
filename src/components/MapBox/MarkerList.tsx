@@ -12,8 +12,14 @@ export function MarkerList() {
     setPitch(60);
     setZoom(18);
     setSelectedPogo({
+      name: pogo.name,
       latitude: pogo.latitude,
       longitude: pogo.longitude,
+      description: pogo.description,
+      image: pogo.image,
+      address: pogo.address,
+      years: pogo.years,
+      region: pogo.region,
     });
   };
   return (

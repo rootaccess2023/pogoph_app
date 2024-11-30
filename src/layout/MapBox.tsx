@@ -13,12 +13,6 @@ export function MapBox() {
   const mapRef = useRef<MapRef>(null);
 
   useEffect(() => {
-    if (mapRef.current) {
-      console.log("MapRef initialized:", mapRef.current);
-    }
-  }, []);
-
-  useEffect(() => {
     if (selectedPogo && mapRef.current) {
       const map = mapRef.current.getMap();
       map.flyTo({

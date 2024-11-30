@@ -12,10 +12,16 @@ export function PogoList() {
   const setFilteredPogo = usePogoStore((state) => state.setFilteredPogo);
   const setSelectedPogo = usePogoStore((state) => state.setSelectedPogo);
 
-  const handleSelectedPogo = (location: Pogo) => {
+  const handleSelectedPogo = (pogo: Pogo) => {
     setSelectedPogo({
-      latitude: location.latitude,
-      longitude: location.longitude,
+      name: pogo.name,
+      latitude: pogo.latitude,
+      longitude: pogo.longitude,
+      description: pogo.description,
+      image: pogo.image,
+      address: pogo.address,
+      years: pogo.years,
+      region: pogo.region,
     });
     setPitch(60);
     setZoom(18);
