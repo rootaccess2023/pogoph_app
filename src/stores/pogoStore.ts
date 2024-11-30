@@ -14,13 +14,17 @@ interface Pogo {
 interface PogoStore {
   year: number;
   pogo: Pogo[];
+  filteredPogo: Pogo[];
   setYear: (year: number) => void;
   setPogo: (pogo: Pogo[]) => void;
+  setFilteredPogo: (pogo: Pogo[]) => void;
 }
 
 export const usePogoStore = create<PogoStore>((set) => ({
   year: 2017,
   pogo: [],
+  filteredPogo: [],
   setYear: (year: number) => set({ year: year }),
   setPogo: (data: Pogo[]) => set({ pogo: data }),
+  setFilteredPogo: (data: Pogo[]) => set({ filteredPogo: data }),
 }));
