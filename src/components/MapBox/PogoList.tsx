@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useMenuStore, usePogoStore } from "../../stores";
+import { MdShareLocation } from "react-icons/md";
 
 export function PogoList() {
   const isOpen = useMenuStore((state) => state.isOpen);
@@ -33,7 +34,17 @@ export function PogoList() {
         isOpen === true ? "block border-t" : "hidden"
       }`}
     >
-      <ul className="h-[290px] w-[376px] bg-white rounded-bl-3xl rounded-br-3xl px-4 py-2"></ul>
+      <ul className="h-[290px] w-[376px] bg-white rounded-bl-3xl rounded-br-3xl py-2 overflow-y-scroll">
+        {pogo.map((location, index) => (
+          <li
+            key={index}
+            className="flex items-center px-5 gap-5 hover:bg-mapsMenu-shadow cursor-pointer"
+          >
+            <MdShareLocation className="text-mapsMenu-tertiary size-[21px]" />
+            <p className="py-3 text-[0.95rem]">{location.name}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
