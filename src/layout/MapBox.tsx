@@ -20,7 +20,6 @@ export function MapBox() {
 
   useEffect(() => {
     if (selectedPogo && mapRef.current) {
-      console.log("Selected Pogo:", selectedPogo);
       const map = mapRef.current.getMap();
       map.flyTo({
         center: [selectedPogo.longitude, selectedPogo.latitude],
