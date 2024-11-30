@@ -11,6 +11,7 @@ export function PogoList() {
   const setPitch = useViewStore((state) => state.setPitch);
   const setFilteredPogo = usePogoStore((state) => state.setFilteredPogo);
   const setSelectedPogo = usePogoStore((state) => state.setSelectedPogo);
+  const setMenuOpen = useMenuStore((state) => state.setMenuOpen);
 
   const handleSelectedPogo = (pogo: Pogo) => {
     setSelectedPogo({
@@ -25,6 +26,7 @@ export function PogoList() {
     });
     setPitch(60);
     setZoom(18);
+    setMenuOpen();
   };
 
   useEffect(() => {

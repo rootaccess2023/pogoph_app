@@ -1,13 +1,14 @@
 import { Map, MapRef } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { MarkerList, PogoList, SearchBar } from "../components";
-import { usePogoStore, useViewStore } from "../stores";
+import { Details, MarkerList, PogoList, SearchBar } from "../components";
+import { useMenuStore, usePogoStore, useViewStore } from "../stores";
 import { useEffect, useRef } from "react";
 
 export function MapBox() {
   const zoom = useViewStore((state) => state.zoom);
   const pitch = useViewStore((state) => state.pitch);
   const selectedPogo = usePogoStore((state) => state.selectedPogo);
+  const menuOpen = useMenuStore((state) => state.menuOpen);
   const MAPBOX_TOKEN =
     "pk.eyJ1IjoicG9sb3JldmlsbzE5IiwiYSI6ImNtM2xydzVyZTByZ2Qyc3BlZ2gwaGcwZnEifQ.pQZoqD9Md_xq2JAlYZzoLw";
   const mapRef = useRef<MapRef>(null);
@@ -41,9 +42,16 @@ export function MapBox() {
       >
         <MarkerList />
       </Map>
-      <div className="absolute top-4 left-4 w-full flex justify-start">
+      <div className="z-50 absolute top-4 left-4 w-full flex justify-start">
         <SearchBar />
         <PogoList />
+      </div>
+      <div
+        className={`${
+          menuOpen === true ? "block" : "hidden"
+        } absolute z-10 top-0 left-0 w-[408px] h-screen bg-white`}
+      >
+        <Details />
       </div>
     </div>
   );

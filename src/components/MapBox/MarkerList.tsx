@@ -1,4 +1,4 @@
-import { Pogo, usePogoStore, useViewStore } from "../../stores";
+import { Pogo, useMenuStore, usePogoStore, useViewStore } from "../../stores";
 import pogoMarker from "../../assets/pogo_marker.svg";
 import { Marker } from "react-map-gl";
 
@@ -7,6 +7,7 @@ export function MarkerList() {
   const setSelectedPogo = usePogoStore((state) => state.setSelectedPogo);
   const setZoom = useViewStore((state) => state.setZoom);
   const setPitch = useViewStore((state) => state.setPitch);
+  const setMenuOpen = useMenuStore((state) => state.setMenuOpen);
 
   const handleMarkerClick = (pogo: Pogo) => {
     setPitch(60);
@@ -21,6 +22,7 @@ export function MarkerList() {
       years: pogo.years,
       region: pogo.region,
     });
+    setMenuOpen();
   };
   return (
     <>
