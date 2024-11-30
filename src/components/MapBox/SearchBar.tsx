@@ -1,8 +1,15 @@
 import { FaBook } from "react-icons/fa";
-import { useMenuStore } from "../../stores";
+import { useMenuStore, usePogoStore } from "../../stores";
 
 export function SearchBar() {
   const isOpen = useMenuStore((state) => state.isOpen);
+  const year = usePogoStore((state) => state.year);
+  const setYear = usePogoStore((state) => state.setYear);
+
+  const handleValueChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setYear(parseInt(e.target.value));
+  };
+
   return (
     <div
       className={`relative w-[376px] flex items-center bg-white text-sm px-6 outline-none ${
@@ -12,7 +19,11 @@ export function SearchBar() {
       } `}
     >
       <div className="relative mx-2 ">
-        <select className="relative -left-2 appearance-none bg-mapsMenu-primary px-2 rounded-lg text-white font-medium">
+        <select
+          value={year}
+          onChange={handleValueChange}
+          className="relative -left-2 appearance-none bg-mapsMenu-primary px-2 rounded-lg text-white font-medium"
+        >
           <option value="2017">2017</option>
           <option value="2018">2018</option>
           <option value="2019">2019</option>
