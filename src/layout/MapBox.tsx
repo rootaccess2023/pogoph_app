@@ -1,16 +1,40 @@
-import { Map } from "react-map-gl";
+import { Map, MapRef } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { MarkerList, PogoList, SearchBar } from "../components";
-import { useViewStore } from "../stores";
+import { usePogoStore, useViewStore } from "../stores";
+import { useEffect, useRef } from "react";
 
 export function MapBox() {
   const zoom = useViewStore((state) => state.zoom);
   const pitch = useViewStore((state) => state.pitch);
+  const selectedPogo = usePogoStore((state) => state.selectedPogo);
   const MAPBOX_TOKEN =
     "pk.eyJ1IjoicG9sb3JldmlsbzE5IiwiYSI6ImNtM2xydzVyZTByZ2Qyc3BlZ2gwaGcwZnEifQ.pQZoqD9Md_xq2JAlYZzoLw";
+  const mapRef = useRef<MapRef>(null);
+
+  useEffect(() => {
+    if (mapRef.current) {
+      console.log("MapRef initialized:", mapRef.current);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (selectedPogo && mapRef.current) {
+      console.log("Selected Pogo:", selectedPogo);
+      const map = mapRef.current.getMap();
+      map.flyTo({
+        center: [selectedPogo.longitude, selectedPogo.latitude],
+        zoom: zoom,
+        pitch: pitch,
+        speed: 1.2,
+      });
+    }
+  }, [selectedPogo]);
+
   return (
     <div className="relative h-screen">
       <Map
+        ref={mapRef}
         mapboxAccessToken={MAPBOX_TOKEN}
         initialViewState={{
           longitude: 121.7744,
