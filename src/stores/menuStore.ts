@@ -6,6 +6,7 @@ interface MenuStore {
   setClose: () => void;
   menuOpen: boolean;
   setMenuOpen: () => void;
+  setMenuClose: () => void;
 }
 
 export const useMenuStore = create<MenuStore>((set) => ({
@@ -14,4 +15,5 @@ export const useMenuStore = create<MenuStore>((set) => ({
   setClose: () => set({ isOpen: false }),
   menuOpen: false,
   setMenuOpen: () => set({ menuOpen: true }),
+  setMenuClose: () => set({ menuOpen: false }),
 }));
