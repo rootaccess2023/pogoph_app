@@ -1,11 +1,12 @@
 import { Map } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { SearchBar } from "../components";
 
 export function MapBox() {
   const MAPBOX_TOKEN =
     "pk.eyJ1IjoicG9sb3JldmlsbzE5IiwiYSI6ImNtM2xydzVyZTByZ2Qyc3BlZ2gwaGcwZnEifQ.pQZoqD9Md_xq2JAlYZzoLw";
   return (
-    <div className="h-screen">
+    <div className="relative h-screen">
       <Map
         mapboxAccessToken={MAPBOX_TOKEN}
         initialViewState={{
@@ -18,6 +19,9 @@ export function MapBox() {
         mapStyle="mapbox://styles/polorevilo19/cm3qjcahc003s01r23ylb492w"
         minZoom={5}
       ></Map>
+      <div className="absolute top-4 left-4 w-full flex justify-start">
+        <SearchBar />
+      </div>
     </div>
   );
 }
