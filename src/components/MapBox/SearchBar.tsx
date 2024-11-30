@@ -1,13 +1,29 @@
 import { FaBook } from "react-icons/fa";
 import { useMenuStore, usePogoStore } from "../../stores";
+import { useState } from "react";
 
 export function SearchBar() {
+  const pogo = usePogoStore((state) => state.pogo);
   const isOpen = useMenuStore((state) => state.isOpen);
   const year = usePogoStore((state) => state.year);
+  const toggleMenu = useMenuStore((state) => state.toggleMenu);
   const setYear = usePogoStore((state) => state.setYear);
+  const [searchItem, setSearchItem] = useState("");
+  const setPogo = usePogoStore((state) => state.setPogo);
 
-  const handleValueChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setYear(parseInt(e.target.value));
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const searchTerm = e.target.value;
+    setSearchItem(searchTerm);
+
+    const filteredPogo = pogo.filter((location) =>
+      location.name?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setPogo(filteredPogo);
   };
 
   return (
@@ -21,7 +37,7 @@ export function SearchBar() {
       <div className="relative mx-2 ">
         <select
           value={year}
-          onChange={handleValueChange}
+          onChange={handleYearChange}
           className="relative -left-2 appearance-none bg-mapsMenu-primary px-2 rounded-lg text-white font-medium"
         >
           <option value="2017">2017</option>
@@ -35,6 +51,10 @@ export function SearchBar() {
         </select>
       </div>
       <input
+        value={searchItem}
+        onChange={handleSearchChange}
+        onFocus={() => toggleMenu(isOpen)}
+        onBlur={() => toggleMenu(isOpen)}
         className="w-full py-4 placeholder:text-gray-500 outline-none focus:outline-none"
         placeholder="Seach POGO locations"
         type="text"
