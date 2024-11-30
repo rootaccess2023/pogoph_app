@@ -1,4 +1,4 @@
-import { FaBook } from "react-icons/fa";
+import { FaBook, FaPlus } from "react-icons/fa";
 import { useMenuStore, usePogoStore } from "../../stores";
 import { useRef, useState } from "react";
 
@@ -11,6 +11,8 @@ export function SearchBar() {
   const setPogo = usePogoStore((state) => state.setPogo);
   const setOpen = useMenuStore((state) => state.setOpen);
   const setClose = useMenuStore((state) => state.setClose);
+  const menuOpen = useMenuStore((state) => state.menuOpen);
+  const setMenuClose = useMenuStore((state) => state.setMenuClose);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   const handleBlur = () => {
@@ -71,7 +73,14 @@ export function SearchBar() {
         placeholder="Seach POGO locations"
         type="text"
       />
-      <FaBook className="size-5 ml-2 text-mapsMenu-primary cursor-pointer" />
+      {menuOpen === false ? (
+        <FaBook className="size-5 ml-2 text-mapsMenu-primary cursor-pointer" />
+      ) : (
+        <FaPlus
+          onClick={() => setMenuClose()}
+          className="size-7 ml-2 text-mapsMenu-primary rotate-45 cursor-pointer"
+        />
+      )}
     </div>
   );
 }
