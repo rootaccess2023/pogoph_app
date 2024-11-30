@@ -1,6 +1,6 @@
 import { Map } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { SearchBar } from "../components";
+import { PogoList, SearchBar } from "../components";
 
 export function MapBox() {
   const MAPBOX_TOKEN =
@@ -21,6 +21,7 @@ export function MapBox() {
       ></Map>
       <div className="absolute top-4 left-4 w-full flex justify-start">
         <SearchBar />
+        <PogoList />
       </div>
     </div>
   );
