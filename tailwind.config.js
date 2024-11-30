@@ -7,6 +7,7 @@ export default {
         mapsMenu: {
           primary: "#478eec",
           tertiary: "#70757a",
+          shadow: "#f7f8f8",
         },
       },
       fontFamily: {
