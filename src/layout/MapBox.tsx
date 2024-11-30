@@ -1,6 +1,6 @@
 import { Map } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { PogoList, SearchBar } from "../components";
+import { MarkerList, PogoList, SearchBar } from "../components";
 
 export function MapBox() {
   const MAPBOX_TOKEN =
@@ -18,7 +18,9 @@ export function MapBox() {
         style={{ width: "100%", height: "100%" }}
         mapStyle="mapbox://styles/polorevilo19/cm3qjcahc003s01r23ylb492w"
         minZoom={5}
-      ></Map>
+      >
+        <MarkerList />
+      </Map>
       <div className="absolute top-4 left-4 w-full flex justify-start">
         <SearchBar />
         <PogoList />
