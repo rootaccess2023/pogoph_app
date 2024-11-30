@@ -1,15 +1,27 @@
 import { FaBook } from "react-icons/fa";
 import { useMenuStore, usePogoStore } from "../../stores";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export function SearchBar() {
   const pogo = usePogoStore((state) => state.pogo);
   const isOpen = useMenuStore((state) => state.isOpen);
   const year = usePogoStore((state) => state.year);
-  const toggleMenu = useMenuStore((state) => state.toggleMenu);
   const setYear = usePogoStore((state) => state.setYear);
   const [searchItem, setSearchItem] = useState("");
   const setPogo = usePogoStore((state) => state.setPogo);
+  const setOpen = useMenuStore((state) => state.setOpen);
+  const setClose = useMenuStore((state) => state.setClose);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+
+  const handleBlur = () => {
+    timeoutRef.current = setTimeout(() => {
+      setClose();
+    }, 200);
+  };
+
+  const handleFocus = () => {
+    setOpen();
+  };
 
   const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setYear(parseInt(e.target.value));
@@ -51,10 +63,10 @@ export function SearchBar() {
         </select>
       </div>
       <input
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         value={searchItem}
         onChange={handleSearchChange}
-        onFocus={() => toggleMenu(isOpen)}
-        onBlur={() => toggleMenu(isOpen)}
         className="w-full py-4 placeholder:text-gray-500 outline-none focus:outline-none"
         placeholder="Seach POGO locations"
         type="text"
