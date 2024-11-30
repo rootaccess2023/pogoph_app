@@ -12,6 +12,7 @@ export default {
       },
       fontFamily: {
         sans: ["Roboto", "sans-serif"],
+        product: ["Product Sans", "sans-serif"],
       },
     },
   },
