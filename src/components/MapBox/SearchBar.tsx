@@ -16,6 +16,7 @@ export function SearchBar() {
   const setMenuClose = useMenuStore((state) => state.setMenuClose);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
   const setSearchTerm = usePogoStore((state) => state.setSearchTerm);
+  const setSideClose = useMenuStore((state) => state.setSideClose);
 
   const handleBlur = () => {
     timeoutRef.current = setTimeout(() => {
@@ -43,6 +44,11 @@ export function SearchBar() {
       );
       setFilteredPogo(searchedPogo);
     }
+  };
+
+  const handleClose = () => {
+    setMenuClose();
+    setSideClose();
   };
 
   return (
@@ -82,7 +88,7 @@ export function SearchBar() {
         <FaBook className="size-5 ml-2 text-mapsMenu-primary cursor-pointer" />
       ) : (
         <FaPlus
-          onClick={() => setMenuClose()}
+          onClick={() => handleClose()}
           className="size-6 ml-2 text-mapsMenu-primary rotate-45 cursor-pointer"
         />
       )}

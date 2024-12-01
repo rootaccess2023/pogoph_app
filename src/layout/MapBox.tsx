@@ -10,6 +10,7 @@ export function MapBox() {
   const pitch = useViewStore((state) => state.pitch);
   const selectedPogo = usePogoStore((state) => state.selectedPogo);
   const menuOpen = useMenuStore((state) => state.menuOpen);
+  const sideOpen = useMenuStore((state) => state.sideOpen);
   const setMenuClose = useMenuStore((state) => state.setMenuClose);
   const setMenuOpen = useMenuStore((state) => state.setMenuOpen);
 
@@ -72,7 +73,9 @@ export function MapBox() {
         ) : (
           <span
             onClick={() => setMenuOpen()}
-            className="z-20 h-8 flex items-center bg-white rounded-tr-md rounded-br-md drop-shadow"
+            className={`${
+              sideOpen === true ? "flex" : "hidden"
+            } z-20 h-8 items-center bg-white rounded-tr-md rounded-br-md drop-shadow`}
           >
             <FaCaretRight className="size-5" />
           </span>
