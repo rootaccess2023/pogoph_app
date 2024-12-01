@@ -1,5 +1,5 @@
 import { FaBook, FaPlus } from "react-icons/fa";
-import { useMenuStore, usePogoStore } from "../../stores";
+import { useMenuStore, usePogoStore, useViewStore } from "../../stores";
 import { useRef } from "react";
 
 export function SearchBar() {
@@ -17,6 +17,9 @@ export function SearchBar() {
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
   const setSearchTerm = usePogoStore((state) => state.setSearchTerm);
   const setSideClose = useMenuStore((state) => state.setSideClose);
+  const setZoom = useViewStore((state) => state.setZoom);
+  const setPitch = useViewStore((state) => state.setPitch);
+  const setSelectedPogo = usePogoStore((state) => state.setSelectedPogo);
 
   const handleBlur = () => {
     timeoutRef.current = setTimeout(() => {
@@ -30,6 +33,14 @@ export function SearchBar() {
 
   const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setYear(parseInt(e.target.value));
+    setZoom(5);
+    setPitch(0);
+    setSelectedPogo({
+      latitude: 12.8797,
+      longitude: 121.7744,
+    });
+    setSideClose();
+    setMenuClose();
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
