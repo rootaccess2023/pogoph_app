@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         mapsMenu: {
-          primary: "#478eec",
+          primary: "#ff5353",
           tertiary: "#70757a",
           shadow: "#f7f8f8",
         },
