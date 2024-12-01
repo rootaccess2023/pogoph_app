@@ -16,10 +16,12 @@ interface PogoStore {
   pogo: Pogo[];
   filteredPogo: Pogo[];
   selectedPogo: Pogo | null;
+  searchTerm: string;
   setYear: (year: number) => void;
   setPogo: (pogo: Pogo[]) => void;
   setFilteredPogo: (pogo: Pogo[]) => void;
   setSelectedPogo: (pogo: Pogo | null) => void;
+  setSearchTerm: (searchTerm: string) => void;
 }
 
 export const usePogoStore = create<PogoStore>((set) => ({
@@ -27,8 +29,10 @@ export const usePogoStore = create<PogoStore>((set) => ({
   pogo: [],
   filteredPogo: [],
   selectedPogo: null,
+  searchTerm: "",
   setYear: (year: number) => set({ year: year }),
   setPogo: (data: Pogo[]) => set({ pogo: data }),
   setFilteredPogo: (data: Pogo[]) => set({ filteredPogo: data }),
   setSelectedPogo: (pogo: Pogo | null) => set({ selectedPogo: pogo }),
+  setSearchTerm: (searchTerm: string) => set({ searchTerm: searchTerm }),
 }));

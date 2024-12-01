@@ -1,19 +1,21 @@
 import { FaBook, FaPlus } from "react-icons/fa";
 import { useMenuStore, usePogoStore } from "../../stores";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 export function SearchBar() {
   const pogo = usePogoStore((state) => state.pogo);
+  const filteredPogo = usePogoStore((state) => state.filteredPogo);
   const isOpen = useMenuStore((state) => state.isOpen);
   const year = usePogoStore((state) => state.year);
   const setYear = usePogoStore((state) => state.setYear);
-  const [searchItem, setSearchItem] = useState("");
-  const setPogo = usePogoStore((state) => state.setPogo);
+  const searchTerm = usePogoStore((state) => state.searchTerm);
+  const setFilteredPogo = usePogoStore((state) => state.setFilteredPogo);
   const setOpen = useMenuStore((state) => state.setOpen);
   const setClose = useMenuStore((state) => state.setClose);
   const menuOpen = useMenuStore((state) => state.menuOpen);
   const setMenuClose = useMenuStore((state) => state.setMenuClose);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const setSearchTerm = usePogoStore((state) => state.setSearchTerm);
 
   const handleBlur = () => {
     timeoutRef.current = setTimeout(() => {
@@ -31,13 +33,16 @@ export function SearchBar() {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
-    setSearchItem(searchTerm);
+    setSearchTerm(searchTerm);
 
-    const filteredPogo = pogo.filter((location) =>
-      location.name?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    setPogo(filteredPogo);
+    if (searchTerm === "") {
+      setFilteredPogo(pogo);
+    } else {
+      const searchedPogo = filteredPogo.filter((location) =>
+        location.name?.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredPogo(searchedPogo);
+    }
   };
 
   return (
@@ -67,7 +72,7 @@ export function SearchBar() {
       <input
         onFocus={handleFocus}
         onBlur={handleBlur}
-        value={searchItem}
+        value={searchTerm}
         onChange={handleSearchChange}
         className="w-full py-4 placeholder:text-gray-500 outline-none focus:outline-none"
         placeholder="Seach POGO locations"
