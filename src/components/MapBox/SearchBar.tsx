@@ -78,7 +78,7 @@ export function SearchBar() {
       ) : (
         <FaPlus
           onClick={() => setMenuClose()}
-          className="size-7 ml-2 text-mapsMenu-primary rotate-45 cursor-pointer"
+          className="size-6 ml-2 text-mapsMenu-primary rotate-45 cursor-pointer"
         />
       )}
     </div>
