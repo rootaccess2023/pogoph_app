@@ -57,7 +57,7 @@ export function PogoList() {
         isOpen === true ? "block border-t" : "hidden"
       }`}
     >
-      <ul className="h-[290px] w-[376px] bg-white rounded-bl-3xl rounded-br-3xl py-2 overflow-y-scroll">
+      <ul className="h-[217px] w-[376px] bg-white rounded-bl-3xl rounded-br-3xl py-2 overflow-y-scroll">
         {filteredPogo.map((location, index) => (
           <li
             onClick={() => handleSelectedPogo(location)}
@@ -65,7 +65,7 @@ export function PogoList() {
             className="flex items-center px-5 gap-5 hover:bg-mapsMenu-shadow cursor-pointer"
           >
             <MdShareLocation className="text-mapsMenu-tertiary size-[21px]" />
-            <p className="py-3 text-[0.95rem]">{location.name}</p>
+            <p className="py-3 text-[0.95rem] truncate">{location.name}</p>
           </li>
         ))}
       </ul>
