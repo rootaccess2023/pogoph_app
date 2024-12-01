@@ -1,5 +1,6 @@
 import { Pogo, useMenuStore, usePogoStore, useViewStore } from "../../stores";
 import pogoMarker from "../../assets/pogo_marker.svg";
+import pogoMarkerSelected from "../../assets/pogo_marker_selected.gif";
 import { Marker } from "react-map-gl";
 
 export function MarkerList() {
@@ -8,6 +9,7 @@ export function MarkerList() {
   const setZoom = useViewStore((state) => state.setZoom);
   const setPitch = useViewStore((state) => state.setPitch);
   const setMenuOpen = useMenuStore((state) => state.setMenuOpen);
+  const selectedPogo = usePogoStore((state) => state.selectedPogo);
 
   const handleMarkerClick = (pogo: Pogo) => {
     setPitch(60);
@@ -27,6 +29,9 @@ export function MarkerList() {
   return (
     <>
       {pogo.map((pogo, index) => {
+        const isSelected =
+          selectedPogo?.latitude === pogo.latitude &&
+          selectedPogo?.longitude === pogo.longitude;
         return (
           <Marker
             key={index}
@@ -36,7 +41,7 @@ export function MarkerList() {
             <img
               onClick={() => handleMarkerClick(pogo)}
               className="size-16"
-              src={pogoMarker}
+              src={isSelected ? pogoMarkerSelected : pogoMarker}
               alt=""
             />
           </Marker>
