@@ -13,45 +13,47 @@ export function Details() {
   const numberOfYears = operatingYears.length;
   return (
     <div>
-      <img
-        className="h-[300px] w-full"
-        src={selectedPogo?.image}
-        alt={selectedPogo?.name}
-      />
-      <div className="pt-4 px-6">
-        <h1 className="font-product text-[1.375rem]">{selectedPogo?.name}</h1>
-        <p className="text-[0.87rem] text-mapsMenu-tertiary">
-          {selectedPogo?.region}
-        </p>
-      </div>
-      <p className="px-6 py-4 border-b">{selectedPogo?.description}</p>
-      <div className="flex flex-col gap-4 text-[0.87rem] px-6 py-4">
-        <div className="flex gap-6">
-          <span>
-            <MdOutlineLocationOn className="size-6 text-mapsMenu-primary" />
-          </span>
-          <p>{selectedPogo?.address}</p>
-        </div>
-        <div className="flex items-center gap-6">
-          <span>
-            <MdLocationSearching className="size-6 text-mapsMenu-primary" />
-          </span>
-          <p className="flex gap-4">
-            <span>{selectedPogo?.latitude}</span>
-            <span>{selectedPogo?.longitude}</span>
+      <div className="h-screen border-r border-mapsMenu-tertiary">
+        <img
+          className="h-[300px] w-full"
+          src={selectedPogo?.image}
+          alt={selectedPogo?.name}
+        />
+        <div className="pt-4 px-6">
+          <h1 className="font-product text-[1.375rem]">{selectedPogo?.name}</h1>
+          <p className="text-[0.87rem] text-mapsMenu-tertiary">
+            {selectedPogo?.region}
           </p>
         </div>
-        <div className="flex items-center gap-6">
-          <span>
-            <MdOutlineQueryBuilder className="size-6 text-mapsMenu-primary" />
-          </span>
-          <p>{numberOfYears} years of operation</p>
-        </div>
-        <div className="flex items-center gap-6">
-          <span>
-            <MdKey className="size-6 text-mapsMenu-primary" />
-          </span>
-          <p>{operatingYears.join(", ")}</p>
+        <p className="px-6 py-4 border-b">{selectedPogo?.description}</p>
+        <div className="flex flex-col gap-4 text-[0.87rem] px-6 py-4">
+          <div className="flex gap-6">
+            <span>
+              <MdOutlineLocationOn className="size-6 text-mapsMenu-primary" />
+            </span>
+            <p>{selectedPogo?.address}</p>
+          </div>
+          <div className="flex items-center gap-6">
+            <span>
+              <MdLocationSearching className="size-6 text-mapsMenu-primary" />
+            </span>
+            <p className="flex gap-4">
+              <span>{selectedPogo?.latitude}</span>
+              <span>{selectedPogo?.longitude}</span>
+            </p>
+          </div>
+          <div className="flex items-center gap-6">
+            <span>
+              <MdOutlineQueryBuilder className="size-6 text-mapsMenu-primary" />
+            </span>
+            <p>{numberOfYears} years of operation</p>
+          </div>
+          <div className="flex items-center gap-6">
+            <span>
+              <MdKey className="size-6 text-mapsMenu-primary" />
+            </span>
+            <p>{operatingYears.join(", ")}</p>
+          </div>
         </div>
       </div>
     </div>
