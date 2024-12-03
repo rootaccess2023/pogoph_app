@@ -20,6 +20,7 @@ export function SearchBar() {
   const setZoom = useViewStore((state) => state.setZoom);
   const setPitch = useViewStore((state) => state.setPitch);
   const setSelectedPogo = usePogoStore((state) => state.setSelectedPogo);
+  const toggleTimelineOpen = useMenuStore((state) => state.toggleTimelineOpen);
 
   const handleBlur = () => {
     timeoutRef.current = setTimeout(() => {
@@ -96,7 +97,10 @@ export function SearchBar() {
         type="text"
       />
       {menuOpen === false ? (
-        <FaBook className="size-5 ml-2 text-mapsMenu-primary cursor-pointer" />
+        <FaBook
+          onClick={() => toggleTimelineOpen()}
+          className="size-5 ml-2 text-mapsMenu-primary cursor-pointer"
+        />
       ) : (
         <FaPlus
           onClick={() => handleClose()}
