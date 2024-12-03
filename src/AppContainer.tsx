@@ -4,6 +4,13 @@ import { useMenuStore } from "./stores";
 export function AppContainer() {
   const timelineOpen = useMenuStore((state) => state.timelineOpen);
   return (
-    <div className="">{timelineOpen === false ? <MapBox /> : <Timeline />}</div>
+    <div className="">
+      <div className={timelineOpen === true ? "hidden" : "block"}>
+        <MapBox />
+      </div>
+      <div className={timelineOpen === true ? "z-50 block" : "hidden"}>
+        <Timeline />
+      </div>
+    </div>
   );
 }
