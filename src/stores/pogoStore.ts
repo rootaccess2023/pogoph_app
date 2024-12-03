@@ -28,7 +28,7 @@ export const usePogoStore = create<PogoStore>((set) => ({
   year: 2017,
   pogo: [],
   filteredPogo: [],
-  selectedPogo: null,
+  selectedPogo: { latitude: 12.8797, longitude: 121.7744 },
   searchTerm: "",
   setYear: (year: number) => set({ year: year }),
   setPogo: (data: Pogo[]) => set({ pogo: data }),
