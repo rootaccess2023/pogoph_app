@@ -10,8 +10,24 @@ import year2021 from "../assets/timeline/year2021.svg";
 import year2022 from "../assets/timeline/year2022.svg";
 import year2023 from "../assets/timeline/year2023.svg";
 import year2024 from "../assets/timeline/year2024.svg";
+import { IoArrowBackCircle } from "react-icons/io5";
+import { useMenuStore, usePogoStore, useViewStore } from "../stores";
 
 export function Timeline() {
+  const toggleTimelineOpen = useMenuStore((state) => state.toggleTimelineOpen);
+  const setZoom = useViewStore((state) => state.setZoom);
+  const setPitch = useViewStore((state) => state.setPitch);
+  const setSelectedPogo = usePogoStore((state) => state.setSelectedPogo);
+
+  const handleClick = () => {
+    toggleTimelineOpen();
+    setSelectedPogo({
+      latitude: 12.8797,
+      longitude: 121.7744,
+    });
+    setPitch(0);
+    setZoom(5);
+  };
   return (
     <div className="relative grid items-center">
       <div className="h-screen w-screen flex items-center">
@@ -83,6 +99,10 @@ export function Timeline() {
             description="In 2024, President Marcos banned POGOs, ending the controversial industry amid ongoing crime, foreign interference, and its rapid decline."
           />
         </div>
+        <IoArrowBackCircle
+          onClick={() => handleClick()}
+          className="z-50 size-8 text-red-700 fixed top-4 left-4 cursor-pointer"
+        />
       </div>
     </div>
   );
