@@ -36,7 +36,7 @@ export function PogoList() {
     const fetchLocations = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:3000/locations?year=${year}`
+          `https://pogoph-api.onrender.com/locations?year=${year}`
         );
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
