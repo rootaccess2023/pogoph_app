@@ -53,19 +53,9 @@ export function MapBox() {
         <PogoList />
       </div>
       {menuOpen && (
-        <motion.div
-          initial={{ x: -410 }}
-          animate={{ x: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            type: "tween",
-            ease: "easeInOut",
-            duration: 0.15,
-          }}
-          className="absolute z-10 top-0 left-0 w-[408px] h-screen bg-white"
-        >
+        <div className="absolute z-10 top-0 left-0 w-[408px] h-screen bg-white">
           <Details />
-        </motion.div>
+        </div>
       )}
       <div
         className={`absolute h-screen ${

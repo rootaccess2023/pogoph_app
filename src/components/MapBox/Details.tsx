@@ -13,7 +13,7 @@ export function Details() {
   const numberOfYears = operatingYears.length;
   return (
     <div>
-      <div className="h-screen border-r border-mapsMenu-tertiary">
+      <div className="h-screen border-r border-gray-300">
         <img
           className="h-[300px] w-full"
           src={selectedPogo?.image}
