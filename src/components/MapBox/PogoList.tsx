@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Pogo, useMenuStore, usePogoStore, useViewStore } from "../../stores";
 import { MdShareLocation } from "react-icons/md";
+import { Loader } from "./Loader";
 
 export function PogoList() {
   const isOpen = useMenuStore((state) => state.isOpen);
@@ -35,7 +36,7 @@ export function PogoList() {
     const fetchLocations = async () => {
       try {
         const response = await fetch(
-          `https://pogoph-api.onrender.com/locations?year=${year}`
+          `http://127.0.0.1:3000/locations?year=${year}`
         );
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
@@ -70,6 +71,7 @@ export function PogoList() {
             <p className="py-3 text-[0.95rem] truncate">{location.name}</p>
           </li>
         ))}
+        <Loader />
       </ul>
     </div>
   );
