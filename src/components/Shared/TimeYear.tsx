@@ -10,7 +10,7 @@ export function TimeYear({ year, title, description, image }: TimeYear) {
     <div className="w-[28rem] my-auto">
       <div className="h-screen flex flex-col justify-center">
         <div className="h-[380px] w-full">
-          <img src={image} alt="" />
+          <img className="px-4" src={image} alt="" />
         </div>
         <div className="h-[180px] flex flex-col justify-center px-4">
           <h1

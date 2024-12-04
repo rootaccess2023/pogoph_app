@@ -29,7 +29,7 @@ export function Timeline() {
     setZoom(5);
   };
   return (
-    <div className="relative grid items-center">
+    <div className="relative grid items-center mx-12">
       <div className="h-screen w-screen flex items-center">
         <div className="w-[390rem] flex items-center gap-2">
           <TimeYear
