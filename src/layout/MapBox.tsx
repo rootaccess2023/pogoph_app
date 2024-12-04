@@ -4,7 +4,6 @@ import { Details, MarkerList, PogoList, SearchBar } from "../components";
 import { useMenuStore, usePogoStore, useViewStore } from "../stores";
 import { useEffect, useRef } from "react";
 import { FaCaretRight } from "react-icons/fa";
-
 export function MapBox() {
   const zoom = useViewStore((state) => state.zoom);
   const pitch = useViewStore((state) => state.pitch);
@@ -51,13 +50,11 @@ export function MapBox() {
         <SearchBar />
         <PogoList />
       </div>
-      <div
-        className={`${
-          menuOpen === true ? "block" : "hidden"
-        } absolute z-10 top-0 left-0 w-[408px] h-screen bg-white`}
-      >
-        <Details />
-      </div>
+      {menuOpen && (
+        <div className="absolute z-10 top-0 left-0 w-[408px] h-screen bg-white">
+          <Details />
+        </div>
+      )}
       <div
         className={`absolute h-screen ${
           menuOpen === true ? "left-[408px]" : "left-0"
