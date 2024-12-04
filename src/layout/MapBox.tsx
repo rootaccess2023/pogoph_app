@@ -4,6 +4,7 @@ import { Details, MarkerList, PogoList, SearchBar } from "../components";
 import { useMenuStore, usePogoStore, useViewStore } from "../stores";
 import { useEffect, useRef } from "react";
 import { FaCaretRight } from "react-icons/fa";
+import { motion } from "motion/react";
 
 export function MapBox() {
   const zoom = useViewStore((state) => state.zoom);
@@ -51,13 +52,21 @@ export function MapBox() {
         <SearchBar />
         <PogoList />
       </div>
-      <div
-        className={`${
-          menuOpen === true ? "block" : "hidden"
-        } absolute z-10 top-0 left-0 w-[408px] h-screen bg-white`}
-      >
-        <Details />
-      </div>
+      {menuOpen && (
+        <motion.div
+          initial={{ x: -410 }}
+          animate={{ x: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            type: "tween",
+            ease: "easeInOut",
+            duration: 0.15,
+          }}
+          className="absolute z-10 top-0 left-0 w-[408px] h-screen bg-white"
+        >
+          <Details />
+        </motion.div>
+      )}
       <div
         className={`absolute h-screen ${
           menuOpen === true ? "left-[408px]" : "left-0"
